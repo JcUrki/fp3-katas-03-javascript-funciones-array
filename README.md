@@ -53,7 +53,7 @@ Cuando se programa con tests es muy importante leer y entender los errores que d
 
 ### 1. Encuentra el máximo
 
-Define una función `maxOfTwoNumbers` que tome dos números como argumentos y devuelva el mayor.
+Define una función `maxOfTwoNumbers` que tome dos números como argumentos y devuelva el mayor
 
 ### 2. Encuentra la palabra más larga
 
