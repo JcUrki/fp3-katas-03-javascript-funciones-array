@@ -22,7 +22,17 @@ export function findLongestWord(array){
     }
     return longestWord;
 /*
-Other option--*** no pasa el último requisito
+Other option
+export function findLongestWord(array){
+    let longestWord;
+    for(let i = 0; i<array.length;i++){
+        if(array[i].length > (longestWord?.length || 0)) //omite el if array.length return undefined con el ||; y con el ? se utiliza por no inicializar la variable
+            longestWord = array[i];
+    }
+    return longestWord;
+}
+
+Op 2 *** no pasa el último requisito
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array.length; j++) {
             if (array[i].length < array[j].length) {
@@ -66,6 +76,11 @@ Other option
     }
     let media = suma/array.length;
     return media; 
+
+Option 
+El if tiene otra manera de escribirse: estructura ternaria
+    return !array.length ? undefined : sumArray(array)/array.length;
+
 */
 }
 
@@ -115,7 +130,7 @@ export function uniquifyArray(array){
 export function doesWordExist(array){
    let palabras = [];
    let bPalabra= "";
-   if(array.length === 0){
+   if(!array.length){
        return false;
     }
     for(let i = 0; i < array.length; i++){
@@ -125,7 +140,10 @@ export function doesWordExist(array){
             return false;
         }
     }
-    //palabra[i].include(bPalabra)
+/*
+Other option
+    palabra[i].include(bPalabra)
+*/
 }
 
 /*Cuenta repeticiones*/
