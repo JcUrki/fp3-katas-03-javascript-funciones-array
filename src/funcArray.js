@@ -11,16 +11,29 @@ export function maxOfTwoNumbers(a, b){
 /*Encuentra la palabra más larga*/
 
 export function findLongestWord(array){
-    let longestWord = "";
-    if(array.length === 0){
+    if(array.length === 0){//o if(!array.length) la exclamación significa que el valor es 0
         return undefined;
     }
+    let longestWord = "";
     for(let i = 0; i < array.length; i++){
         if(array[i].length > longestWord.length){
         longestWord = array[i];
         }
     }
     return longestWord;
+/*
+Other option--*** no pasa el último requisito
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array.length; j++) {
+            if (array[i].length < array[j].length) {
+                return array[j];
+            } else {
+                return array[i];
+            }
+        }
+    }
+
+*/
 }
 
 /*Calcula la suma*/ 
@@ -38,6 +51,12 @@ export function sumArray(array){
 //Array de números
 
 export function averageNumbers(array){
+    if(!array.length){
+        return undefined;
+    }
+    return sumArray(array)/array.length;
+/*   
+Other option
     let suma = 0;
     if(array.length === 0){
         return undefined;
@@ -47,6 +66,7 @@ export function averageNumbers(array){
     }
     let media = suma/array.length;
     return media; 
+*/
 }
 
 //Array de strings
@@ -80,7 +100,7 @@ export function uniquifyArray(array){
 
     /* 
     Option-2 
-    set objeto
+    Object set
 
     Option-3
     .includes
@@ -105,6 +125,7 @@ export function doesWordExist(array){
             return false;
         }
     }
+    //palabra[i].include(bPalabra)
 }
 
 /*Cuenta repeticiones*/
