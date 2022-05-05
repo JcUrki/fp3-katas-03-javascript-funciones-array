@@ -22,17 +22,18 @@ export function findLongestWord(array){
     }
     return longestWord;
 /*
-Other option
-export function findLongestWord(array){
-    let longestWord;
-    for(let i = 0; i<array.length;i++){
-        if(array[i].length > (longestWord?.length || 0)) //omite el if array.length return undefined con el ||; y con el ? se utiliza por no inicializar la variable
-            longestWord = array[i];
+Op-1
+    export function findLongestWord(array){
+        let longestWord;
+        for(let i = 0; i<array.length;i++){
+            if(array[i].length > (longestWord?.length || 0)){ //omite el if array.length return undefined con el ||; y con el ? se utiliza por no inicializar la variable
+                longestWord = array[i];
+            }
+        }
+        return longestWord;
     }
-    return longestWord;
-}
 
-Op 2 *** no pasa el último requisito
+Op-2 *** no pasa el último requisito
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array.length; j++) {
             if (array[i].length < array[j].length) {
@@ -42,18 +43,17 @@ Op 2 *** no pasa el último requisito
             }
         }
     }
-
 */
 }
 
 /*Calcula la suma*/ 
 
 export function sumArray(array){
-    let suma = 0;
+    let sum = 0;
     for(let i = 0; i <array.length; i++){
-        suma += array[i];
+        sum += array[i];
     }
-    return suma;
+    return sum;
 }
 
 /*Calcula la media aritmética*/
@@ -66,7 +66,7 @@ export function averageNumbers(array){
     }
     return sumArray(array)/array.length;
 /*   
-Other option
+Op-1
     let suma = 0;
     if(array.length === 0){
         return undefined;
@@ -77,9 +77,9 @@ Other option
     let media = suma/array.length;
     return media; 
 
-Option 
-El if tiene otra manera de escribirse: estructura ternaria
-    return !array.length ? undefined : sumArray(array)/array.length;
+Op-2
+    ***El if tiene otra manera de escribirse: Estructura ternaria
+        return !array.length ? undefined : sumArray(array)/array.length;
 
 */
 }
@@ -87,71 +87,142 @@ El if tiene otra manera de escribirse: estructura ternaria
 //Array de strings
 
 export function averageWordLength(array){
-    let palabras = "";
+    let words = "";
     if(array.length === 0){
         return undefined;
     }
     for(let i = 0; i < array.length; i++){
-        palabras += array[i];
+        words += array[i];
     }
-    let media = palabras.length/array.length;
+    let media = words.length/array.length;
     return media; 
 }
 
 /*Recibe un array de palabras como parámetro*/
 
 export function uniquifyArray(array){
-    //Option-1
     let noDuplicate = [];
-    if(array.length === 0){
+    if(!array.length ){
         return undefined;
-    }
+    } 
     for(let i=0; i<array.length; i++){
-        if(noDuplicate.indexOf(array[i])){
-            noDuplicate.push(array[i])
+        if(noDuplicate.indexOf(array[i])===-1){//El ===-1 da el return unifyArray
+            noDuplicate.push(array[i]);
         }
     }
     return noDuplicate;
+    /* Others
+    Op-1        Object set
 
-    /* 
-    Option-2 
-    Object set
+    Op-2        .includes
+        for(let i = 0; i < array.length; i++) {
+            const words= array[i];
+            if (!noDuplicate.includes(array[i])) {
+                noDuplicate.push(words);
+            }
+        }
+        
+    Op-4        .some
 
-    Option-3
-    .includes
+    Op-5
+        if(!array.length ){
+            return undefined;
+        }else { 
+            let resultado = array.reduce((palabraSinRepetir, currentValue) =>{
+        if(!palabraSinRepetir.find(d => d == currentValue)) {
+            palabraSinRepetir.push(currentValue);
+        } 
+        return palabraSinRepetir;
+    }, [])
 
-    Option-4
-    .some
+    return resultado
     */
 }
 
 /*Busca elementos*/ 
 
-export function doesWordExist(array){
-   let palabras = [];
-   let bPalabra= "";
-   if(!array.length){
-       return false;
-    }
-    for(let i = 0; i < array.length; i++){
-        if (palabras[i]===bPalabra){
-            return true;
-        } else{
-            return false;
-        }
-    }
+export function doesWordExist(array, sWord){
+   let words= false;
+   for(let i= 0; i<array.length; i++){
+       if (array[i]=== sWord){
+           words= true;
+       }
+   }
+   return words;
+    
 /*
 Other option
-    palabra[i].include(bPalabra)
+    array[i].include(bPalabra)
 */
 }
 
 /*Cuenta repeticiones*/
 
-export function howManyTimes(){
-    
+export function howManyTimes(array, word){
+    if(!array.length ){
+        return undefined;
+    } 
+    let nRepeat= 0;
+    for(let i= 0; i < array.length; i++){
+        if(array[i] == word){
+            nRepeat++
+        }
+    }
+    return nRepeat;
+    /*
+    Op      .forEach ^ .includes
+        export function howManyTimes(array, search){
+            if(!array.length) {
+            return undefined;
+            } else {
+                let count= 0; array.forEach(element => {
+                    if(element.includes(search)){
+                        count ++;
+                    }
+                });
+                return countr; 
+            }
+        }
+
+    Op      .filter 
+    */
 }
-export function greatestProduct(){}
+/*Producto mayor de cuatro números adyacentes*/
+export function greatestProduct(array){
+    if(array[i].length===1){
+        return 1;
+    };
+    let matrix= [];
+    let max = 0, result;
+    
+    for(let i= 0; i < array.length; i++){
+        for (let j= 0; j < array.length; jç++){
+             //Hori
+            if((j++) >=0){
+                result= array[i][j]*array[i][j++]; 
+                if(nax< result){
+                    max= result;
+                }   
+            }
+            //Vert
+            if((j++) >=0){
+                result= array[i][j]*array[i++][j++]; 
+                if(nax< result){
+                    max= result;
+                }
+            }
+            //Dia
+            if ((i++) >= 0 && (j++) >= 0){ 
+                result= array[i][j]*array[i][j++]; 
+                if (max < result){ 
+                max = result; 
+                }
+            } 
+        }
+        
+        }
+    return matrix;
+}
 
 
 
