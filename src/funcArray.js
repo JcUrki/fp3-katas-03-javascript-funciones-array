@@ -189,41 +189,26 @@ export function howManyTimes(array, word){
 }
 /*Producto mayor de cuatro números adyacentes*/
 export function greatestProduct(array){
-    if(array[i].length===1){
-        return 1;
-    };
-    let matrix= [];
-    let max = 0, result;
-    
-    for(let i= 0; i < array.length; i++){
-        for (let j= 0; j < array.length; jç++){
-             //Hori
-            if((j++) >=0){
-                result= array[i][j]*array[i][j++]; 
-                if(nax< result){
-                    max= result;
-                }   
-            }
-            //Vert
-            if((j++) >=0){
-                result= array[i][j]*array[i++][j++]; 
-                if(nax< result){
-                    max= result;
-                }
-            }
-            //Dia
-            if ((i++) >= 0 && (j++) >= 0){ 
-                result= array[i][j]*array[i][j++]; 
-                if (max < result){ 
-                max = result; 
-                }
-            } 
+    let max= 0;
+    for (let i =0; i<array.length; i++){ 
+        // Calcula horizontal
+        for (let j =0; j<array[i].length-3; j++){ //Omite los ultimos 3, ya que estos últimos no puede agruparse en 4
+            max = array[i][j]*array[i][j+1]*array[i][j+2]*array[i][j+3];//* Grupos de 4
         }
-        
-        }
-    return matrix;
+    }
+    for (let i =0; i<array.length; i++){ 
+        // Calcula vertical
+        for (let j =0; j<array[i].length-3; j++){ 
+            max = array[i+1][j]*array[i+1][j+1]*array[i+1][j+2]*array[i+1][j+3];
+        }   
+    }
+    for (let i =0; i<array.length; i++){ 
+        // Calcula diagonal
+        for (let j =0; j<array[i].length-3; j++){ 
+            max = array[i+1][j+1]*array[i+1][j+2]*array[i+1][j+3]*array[i+1][j+4];
+        }   
+    }
 }
-
 
 
 
