@@ -8,6 +8,12 @@ export function maxOfTwoNumbers(a, b){
    }
 }
 
+/*
+Op-1
+    let mayor= Math.max(a, b);
+    return mayor;
+*/
+
 /*Encuentra la palabra más larga*/
 
 export function findLongestWord(array){
@@ -43,6 +49,22 @@ Op-2 *** no pasa el último requisito
             }
         }
     }
+
+Op-3    .forEach
+    findLongestWord(arrayWords){
+        if(arrayWords.length === 0) {
+            return undefined;
+        } else {
+        let longestWord="";
+            arrayWords.forEach(word => {
+                if(word.length > longestWord.length) {
+                    longestWord= word
+                }
+            });
+        
+        return longestWord;
+    }
+    }
 */
 }
 
@@ -54,6 +76,12 @@ export function sumArray(array){
         sum += array[i];
     }
     return sum;
+
+/*
+Op-1    .reduce()
+    let sum= array.reduce(
+        (previousValue, currrentValue) => previousValue+ currrentValue, 0)
+*/
 }
 
 /*Calcula la media aritmética*/
@@ -96,6 +124,18 @@ export function averageWordLength(array){
     }
     let media = words.length/array.length;
     return media; 
+    /*
+    Op  Más corto
+     for(let i = 0; i < array.length; i++){
+        words += array[i];
+    }
+    return words.length/array.length;
+
+    Op  .map()
+        let Words = array.map(x => x.length)
+        let media= averageNumbers(Words);
+        return Words;
+    */ 
 }
 
 /*Recibe un array de palabras como parámetro*/
@@ -150,10 +190,16 @@ export function doesWordExist(array, sWord){
    }
    return words;
     
-/*
-Other option
-    array[i].include(bPalabra)
-*/
+    /*
+    Op  .includes()
+        if(array.includes(sWord))
+        return true;
+        return false;
+
+    Op  Más simplificado
+        let words = array.includes(sWord);
+        return words;
+    */
 }
 
 /*Cuenta repeticiones*/
@@ -171,18 +217,25 @@ export function howManyTimes(array, word){
     return nRepeat;
     /*
     Op      .forEach ^ .includes
-        export function howManyTimes(array, search){
             if(!array.length) {
             return undefined;
             } else {
                 let count= 0; array.forEach(element => {
-                    if(element.includes(search)){
+                    if(element.includes(word)){
                         count ++;
                     }
                 });
-                return countr; 
+                return count; 
             }
+    
+    Op  
+        let nRepeat = [];
+        let idx = array.indexOf(word);
+        while (idx != -1) {
+            nRepeat.push(idx);
+            idx = array.indexOf(word, idx + 1);
         }
+        return nRepeat.length;
 
     Op      .filter 
     */
@@ -192,21 +245,28 @@ export function greatestProduct(array){
     let max= 0;
     for (let i =0; i<array.length; i++){ 
         // Calcula horizontal
-        for (let j =0; j<array[i].length-3; j++){ //Omite los ultimos 3, ya que estos últimos no puede agruparse en 4
+        for (let j =0; j<array[i].length-3; j++){ //Omite los ultimos 3, ya que estos últimos no pueden agruparse en grupos de 4
             max = array[i][j]*array[i][j+1]*array[i][j+2]*array[i][j+3];//* Grupos de 4
         }
-    }
-    for (let i =0; i<array.length; i++){ 
-        // Calcula vertical
-        for (let j =0; j<array[i].length-3; j++){ 
-            max = array[i+1][j]*array[i+1][j+1]*array[i+1][j+2]*array[i+1][j+3];
+        }
+        for (let i =0; i<array.length-3; i++){ 
+            // Calcula vertical
+            for (let j =0; j<array[i].length-3; j++){ 
+                max = array[i+1][j]*array[i+1][j+1]*array[i+1][j+2]*array[i+1][j+3];
+            }   
+        }
+        for (let i =0; i<array.length-3; i++){ 
+            // Calcula diagonal de izquierda-superior a derecha-inferior
+            for (let j =0; j<array[i].length-3; j++){ 
+                max = array[i+1][j]*array[i+2][j+1]*array[i+3][j+2]*array[i+4][j+3];
         }   
-    }
-    for (let i =0; i<array.length; i++){ 
-        // Calcula diagonal
-        for (let j =0; j<array[i].length-3; j++){ 
-            max = array[i+1][j+1]*array[i+1][j+2]*array[i+1][j+3]*array[i+1][j+4];
-        }   
+        for (let i =0; i<array.length-3; i++){ 
+            // Calcula diagonal derecha-superior a izquierda-inferior
+            for (let j =0; j<array[i].length-3; j++){ 
+                max = array[1-i][j]*array[2-i][j-1]*array[3-i][j-2]*array[4-i][j-3];
+            } 
+        } 
+        return max;
     }
 }
 
