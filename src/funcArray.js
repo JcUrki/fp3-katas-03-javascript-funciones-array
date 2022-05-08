@@ -243,31 +243,31 @@ export function howManyTimes(array, word){
 /*Producto mayor de cuatro números adyacentes*/
 export function greatestProduct(array){
     let max= 0;
-    for (let i =0; i<array.length; i++){ 
+    for (let i =0; i<array.length-3; i++){ 
         // Calcula horizontal
+        for (let j =0; j<array[i].length; j++){ 
+            max = array[i][j]*array[i+1][j]*array[i+2][j]*array[i+3][j];
+        }   
+    }
+    for (let i =0; i<array.length; i++){ 
+        // Calcula vertical
         for (let j =0; j<array[i].length-3; j++){ //Omite los ultimos 3, ya que estos últimos no pueden agruparse en grupos de 4
             max = array[i][j]*array[i][j+1]*array[i][j+2]*array[i][j+3];//* Grupos de 4
         }
-        }
-        for (let i =0; i<array.length-3; i++){ 
-            // Calcula vertical
-            for (let j =0; j<array[i].length-3; j++){ 
-                max = array[i+1][j]*array[i+1][j+1]*array[i+1][j+2]*array[i+1][j+3];
-            }   
-        }
-        for (let i =0; i<array.length-3; i++){ 
-            // Calcula diagonal de izquierda-superior a derecha-inferior
-            for (let j =0; j<array[i].length-3; j++){ 
-                max = array[i+1][j]*array[i+2][j+1]*array[i+3][j+2]*array[i+4][j+3];
-        }   
-        for (let i =0; i<array.length-3; i++){ 
-            // Calcula diagonal derecha-superior a izquierda-inferior
-            for (let j =0; j<array[i].length-3; j++){ 
-                max = array[1-i][j]*array[2-i][j-1]*array[3-i][j-2]*array[4-i][j-3];
-            } 
-        } 
-        return max;
     }
+    for (let i =0; i<array.length-3; i++){ 
+        // Calcula diagonal de izquierda-superior a derecha-inferior
+        for (let j =0; j<array[i].length-3; j++){ 
+            max = array[i][j]*array[i+1][j+1]*array[i+2][j+2]*array[i+3][j+3];
+        }  
+    } 
+    for (let i =3; i<array.length-3; i++){ 
+        // Calcula diagonal derecha-superior a izquierda-inferior
+        for (let j =0; j<array[i].length-3; j++){
+            max = array[i][j]*array[i-1][j-1]*array[i-2][j-2]*array[i-3][j-3];
+        } 
+    }   
+    return max;    
 }
 
 
