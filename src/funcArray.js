@@ -282,3 +282,21 @@ export function greatestProduct(array){
 
 
 
+/* Hay un pequeño error en el test con respecto al calculo de la diagonal ya que el resultado más alto de las 4 adyacentes debe dar igual a 70600674. Una buena forma de calcular las diagonales sería con la estructura a continuación
+    for (let i =0; i<array.length-3; i++){ 
+            // Calcula diagonal de izquierda-superior a derecha-inferior
+            for (let j =3; j<array[i].length; j++){ 
+                if( array[i][j]*array[i+1][j-1]*array[i+2][j-2]*array[i+3][j-3] > max){
+                    max =  array[i][j]*array[i+1][j-1]*array[i+2][j-2]*array[i+3][j-3]
+                };
+        }
+        }
+        let reverse= array.map(x => x.reverse())
+        for (let i =0; i<reverse.length-3; i++){ 
+            // Calcula diagonal de izquierda-superior a derecha-inferior
+            for (let j =3; j<reverse[i].length; j++){ 
+                if( reverse[i][j]*reverse[i+1][j-1]*reverse[i+2][j-2]*reverse[i+3][j-3] > max){
+                    max =  reverse[i][j]*reverse[i+1][j-1]*reverse[i+2][j-2]*reverse[i+3][j-3]
+                };
+        }
+    */
