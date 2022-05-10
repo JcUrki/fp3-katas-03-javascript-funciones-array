@@ -282,7 +282,9 @@ export function greatestProduct(array){
     return max;    
 }
 
-/*return Math.max(horizontal,vertical, diagonal)*/ 
+/* Si definiera una variable para cada caso- Se podría hacer esta operación
+    return Math.max(horizontal,vertical, diagonal)
+*/ 
 
 
 /* 
