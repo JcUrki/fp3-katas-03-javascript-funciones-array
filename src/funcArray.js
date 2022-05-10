@@ -142,11 +142,11 @@ export function averageWordLength(array){
 
 export function uniquifyArray(array){
     let noDuplicate = [];
-    if(!array.length ){
+    if(!array.length){
         return undefined;
     } 
     for(let i=0; i<array.length; i++){
-        if(noDuplicate.indexOf(array[i])===-1){//El ===-1 da el return unifyArray
+        if(noDuplicate.indexOf(array[i])===-1){//El ===-1/ <0 da el return unifyArray
             noDuplicate.push(array[i]);
         }
     }
@@ -168,11 +168,11 @@ export function uniquifyArray(array){
         if(!array.length ){
             return undefined;
         }else { 
-            let resultado = array.reduce((palabraSinRepetir, currentValue) =>{
-        if(!palabraSinRepetir.find(d => d == currentValue)) {
-            palabraSinRepetir.push(currentValue);
+            let resultado = array.reduce((noDuplicate, currentValue) =>{
+        if(!noDuplicate.find(d => d == currentValue)) {
+            noDuplicate.push(currentValue);
         } 
-        return palabraSinRepetir;
+        return noDuplicate;
     }, [])
 
     return resultado
@@ -195,6 +195,12 @@ export function doesWordExist(array, sWord){
         if(array.includes(sWord))
         return true;
         return false;
+
+        or
+        if(!array.length){
+            return false;
+        }
+        return array.includes(sWord);
 
     Op  Más simplificado
         let words = array.includes(sWord);
