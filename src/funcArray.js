@@ -266,29 +266,27 @@ export function greatestProduct(array){
             };
         }
     }
-    for (let i = 0; i<array.length-3; i++){ 
-        // Calcula diagonal de izquierda-superior a derecha-inferior
-        for (let j =0; j<array[i].length-3; j++){ 
-            if(array[i][j]*array[i+1][j+1]*array[i+2][j+2]*array[i+3][j+3] > max){
-                max = array[i][j]*array[i+1][j+1]*array[i+2][j+2]*array[i+3][j+3];
-            };
-        }  
-    } 
-    for (let i = 3; i<array.length-3; i++){ 
-        // Calcula diagonal derecha-superior a izquierda-inferior
-        for (let j =0; j<array[i].length-3; j++){
-            if(array[i][j]*array[i-1][j-1]*array[i-2][j-2]*array[i-3][j-3] > max){
-                max = array[i][j]*array[i-1][j-1]*array[i-2][j-2]*array[i-3][j-3];
-            };
+    function diagonal(){
+        for (let i = 0; i<array.length-3; i++){ 
+            // Calcula diagonal de izquierda-superior a derecha-inferior
+            for (let j =0; j<array[i].length-3; j++){ 
+                if(array[i][j]*array[i+1][j+1]*array[i+2][j+2]*array[i+3][j+3] > max){
+                    max = array[i][j]*array[i+1][j+1]*array[i+2][j+2]*array[i+3][j+3];
+                };
+            }  
         } 
-    }   
+    }
+        diagonal(array); 
+        let reverse = array.map(x=>x.reverse());
+        diagonal(reverse);
     return max;    
 }
 
+/*return Math.max(horizontal,vertical, diagonal)*/ 
 
 
-
-/* Hay un pequeño error en el test con respecto al calculo de la diagonal ya que el resultado más alto de las 4 adyacentes debe dar igual a 70600674. Una buena forma de calcular las diagonales sería con la estructura a continuación
+/* 
+Other option
     for (let i =0; i<array.length-3; i++){ 
             // Calcula diagonal de izquierda-superior a derecha-inferior
             for (let j =3; j<array[i].length; j++){ 
